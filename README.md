@@ -1,4 +1,4 @@
-# UES Daily Standup Meeting Helper Software
+# Ryte UES Daily Standup Meeting Helper Software
 
 ## Getting started
 
