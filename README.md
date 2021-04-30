@@ -12,7 +12,7 @@ Now you have `App.scala` running in your browser, and any code changes you make 
 
 ## Author
 
-Philipp Moers – [@sflip](https://twitter.com/sflip)
+Philipp Moers – [@soziflip](https://twitter.com/soziflip)
 
 
 ## License
