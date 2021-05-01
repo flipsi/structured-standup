@@ -6,7 +6,7 @@ object App {
 
   def main(args: Array[String]): Unit = {
 
-    val teamMembers = List("Alex", "Armin", "Christof", "Luciano", "Nebo", "Philipp", "Sabrina")
+    val teamMembers = List("Alex", "Armin", "Ashraf", "Christof", "Luciano", "Nebo", "Philipp", "Sabrina")
 
     lazy val container = document.getElementById("app-container")
 
