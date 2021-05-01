@@ -6,24 +6,40 @@ object App {
 
   def main(args: Array[String]): Unit = {
 
-    val teamMembers = List("Alex", "Armin", "Ashraf", "Christof", "Luciano", "Nebo", "Philipp", "Sabrina")
-
-    lazy val container = document.getElementById("app-container")
-
-    lazy val appElement = div(
-      h1("UES Daily Standup"),
-      ul(
-        fontSize := "130%",
-        lineHeight := "2em",
-        teamMembers.map { member =>
-          li(
-            span(member)
-          )
-        }
-        ),
+    val teamMembers = List(
+      "Alex",
+      "Armin",
+      "Ashraf",
+      "Christof",
+      "Luciano",
+      "Nebo",
+      "Philipp",
+      "Sabrina"
     )
 
+    lazy val spotlight = div(className := "spotlight")
+
+    lazy val appElement =
+      div(
+        className := "app",
+        h1("UES Daily Standup"),
+        spotlight,
+        div(
+          className := "team-members-container",
+          ul(
+            className := "team-members",
+            teamMembers.map { member =>
+              li(
+                className := "team-member",
+                span(member)
+              )
+            }
+          )
+        )
+      )
+
     // Wait until the DOM is loaded, otherwise app-container element might not exist
+    lazy val container = document.getElementById("app-container")
     renderOnDomContentLoaded(container, appElement)
   }
 

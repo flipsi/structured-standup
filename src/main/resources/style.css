@@ -1,9 +1,13 @@
 html,
 body {
+  position: relative;
+  top: 0;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  top: 0;
+}
+.app-container {
+  min-height: 100%;
 }
 
 body {
@@ -11,4 +15,34 @@ body {
   font-size: 14px;'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
   font-weight: 300;
+}
+
+h1 {
+    font-size: 6em;
+}
+.app {
+    padding: 20px;
+}
+
+.spotlight {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    margin-left: 300px;
+    margin-top: 170px;
+}
+.team-members-container {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 30px;
+}
+.team-members {
+    list-style: none;
+    white-space: nowrap;
+    line-height: 2em;
+    font-size: 150%;
+}
+.team-member {
+    display: inline;
+    margin-right: 1em;
 }
