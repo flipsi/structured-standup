@@ -18,5 +18,3 @@ Philipp Moers – [@soziflip](https://twitter.com/soziflip)
 ## License
 
 This software is provided under the [MIT license](LICENSE.md)
-
-TODO: Remove CSS (other license)

@@ -8,8 +8,6 @@ object App {
 
     val teamMembers = List("Alex", "Armin", "Christof", "Luciano", "Nebo", "Philipp", "Sabrina")
 
-
-    // This div, its id and contents are defined in index-fastopt.html and index-fullopt.html files
     lazy val container = document.getElementById("app-container")
 
     lazy val appElement = div(
