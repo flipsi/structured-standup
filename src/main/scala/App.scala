@@ -6,32 +6,53 @@ object App {
 
   def main(args: Array[String]): Unit = {
 
+    case class TeamMember(name: String)
+
     val teamMembers = List(
-      "Alex",
-      "Armin",
-      "Ashraf",
-      "Christof",
-      "Luciano",
-      "Nebo",
-      "Philipp",
-      "Sabrina"
+      TeamMember("Alex"),
+      TeamMember("Armin"),
+      TeamMember("Ashraf"),
+      TeamMember("Christof"),
+      TeamMember("Luciano"),
+      TeamMember("Nebo"),
+      TeamMember("Philipp"),
+      TeamMember("Sabrina")
     )
 
-    lazy val spotlight = div(className := "spotlight")
+    // val memberStream: Signal[TeamMember] = ???
+
+    def render(member: TeamMember): Span =
+      span(
+        span(className(List("member-icon", "material-icons")), "person"),
+        member.name
+      )
+
+    // val colorStream: EventStream[String]
+
+    // def spotlightMemberView($members: Signal[TeamMember]): Div = div($members.map(_.name))
+
+    lazy val spotlight =
+      div(
+        div(
+          className(List("spotlight")),
+          // color <-- colorStream
+        ),
+        onClick --> { _ => println("Coooool") }
+      )
 
     lazy val appElement =
       div(
-        className := "app",
+        className("app"),
         h1("UES Daily Standup"),
         spotlight,
         div(
-          className := "team-members-container",
+          className("team-members-container"),
           ul(
-            className := "team-members",
+            className("team-members"),
             teamMembers.map { member =>
               li(
-                className := "team-member",
-                span(member)
+                className("team-member"),
+                render(member)
               )
             }
           )

@@ -40,9 +40,14 @@ h1 {
     list-style: none;
     white-space: nowrap;
     line-height: 2em;
-    font-size: 150%;
+    font-size: 120%;
 }
 .team-member {
     display: inline;
-    margin-right: 1em;
+    margin-right: 2em;
+}
+.member-icon {
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
 }
