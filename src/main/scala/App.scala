@@ -19,7 +19,6 @@ object App {
       TeamMember("Luciano"),
       TeamMember("Nebo"),
       TeamMember("Philipp"),
-      TeamMember("Sabrina")
     )
 
     // STATE
