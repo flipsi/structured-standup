@@ -1,5 +1,11 @@
 # Ryte UES Daily Standup Meeting Helper Software
 
+## Description
+
+This is a tiny helper to help a developer team to structure their Daily Standup Meeting by suggesting an order of the team member's turns.
+
+I picked this use case to get my hands on the Functional Reactive Scala.js UI library [Laminar](https://laminar.dev/documentation#modifiers).
+
 ## Getting started
 
 1) git clone this repo to your local machine
@@ -17,4 +23,4 @@ Philipp Moers – [@soziflip](https://twitter.com/soziflip)
 
 ## License
 
-This software is provided under the [MIT license](LICENSE.md)
+This software is provided under the [MIT license](LICENSE.md).
