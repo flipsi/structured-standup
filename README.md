@@ -1,4 +1,4 @@
-# Ryte UES Daily Standup Meeting Helper Software
+# Structured Standup
 
 ## Description
 

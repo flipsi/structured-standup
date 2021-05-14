@@ -5,21 +5,22 @@ import org.scalajs.dom.document
 
 object App {
 
+  val headline = "Structured Standup"
+
+  // MODEL
+
+  case class TeamMember(name: String)
+  val teamMembers = List(
+    TeamMember("Alex"),
+    TeamMember("Armin"),
+    TeamMember("Ashraf"),
+    TeamMember("Christof"),
+    TeamMember("Luciano"),
+    TeamMember("Nebo"),
+    TeamMember("Philipp"),
+  )
+
   def main(args: Array[String]): Unit = {
-
-    // MODEL
-
-    case class TeamMember(name: String)
-
-    val teamMembers = List(
-      TeamMember("Alex"),
-      TeamMember("Armin"),
-      TeamMember("Ashraf"),
-      TeamMember("Christof"),
-      TeamMember("Luciano"),
-      TeamMember("Nebo"),
-      TeamMember("Philipp"),
-    )
 
     // STATE
 
@@ -93,7 +94,7 @@ object App {
     lazy val appElement =
       div(
         className("app"),
-        h1("UES Daily Standup"),
+        h1(headline),
         MemberList("Awaiting Spotlight:", "todo", membersTodo.signal),
         Spotlight(memberInSpotlight.signal),
         MemberList("Finished:", "done", membersDone.signal),
