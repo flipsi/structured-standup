@@ -1,3 +1,4 @@
+import scala.util.Random
 import ajax.AjaxTester
 import com.raquo.laminar.api.L._
 import org.scalajs.dom.document
@@ -23,6 +24,14 @@ object App {
 
     // STATE
 
+    implicit val random = new Random
+
+    def getRandomElement[A](seq: Seq[A])(implicit random: Random): Option[A] =
+      seq.length match {
+        case 0 => None
+        case n => Some(seq(random.nextInt(n)))
+      }
+
     // Var-s are reactive state variables suitable for both local state and redux-like global stores.
     // Laminar uses my library Airstream as its reactive layer https://github.com/raquo/Airstream
 
@@ -38,7 +47,7 @@ object App {
     // TODO: refactor imperative implementation the reactive way
     def nominateNextMember(): Unit = {
       memberInSpotlight.now.map((last => membersDone.set((membersDone.now: List[TeamMember]) :+ last)))
-      val theLuckyOne = membersTodo.now.headOption
+      val theLuckyOne = getRandomElement(membersTodo.now)
       memberInSpotlight.set(theLuckyOne)
       theLuckyOne map { theOne =>
         println(s"Es freue sich: ${theOne.name}")
