@@ -6,6 +6,9 @@ body {
 h1 {
   color: #EAA266;
 }
+.team-members-container > span {
+  color: #3CCC33;
+}
 .spotlight {
     background: #444444;
 }

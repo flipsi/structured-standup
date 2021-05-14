@@ -18,36 +18,55 @@ body {
 }
 
 h1 {
-    font-size: 6em;
+  font-size: 6em;
+  margin-bottom: 1em;
 }
 .app {
-    padding: 20px;
+  padding: 20px;
 }
-
 .spotlight {
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    margin-left: 300px;
-    margin-top: 170px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin-left: 300px;
 }
+.spotlight .team-member {
+  position: relative;
+  top: 128px;
+  left: 110px;
+}
+/* TODO: fix this for member-icon
+.spotlight .team-member,
+.spotlight .team-member > member-icon {
+  font-size: 40px
+}
+*/
 .team-members-container {
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 30px;
+  margin-left: 50px;
+}
+.team-members-container.todo {
+  margin-bottom: 100px;
+}
+.team-members-container.done {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 30px;
+}
+.team-members-container > span {
+  font-size: 1.5em;
 }
 .team-members {
-    list-style: none;
-    white-space: nowrap;
-    line-height: 2em;
-    font-size: 120%;
+  list-style: none;
+  white-space: nowrap;
+  line-height: 2em;
+  font-size: 120%;
 }
-.team-member {
-    display: inline;
-    margin-right: 2em;
+.team-members > li {
+  display: inline;
+  margin-right: 2em;
 }
 .member-icon {
-    position: relative;
-    top: 4px;
-    margin-right: 5px;
+  position: relative;
+  top: 4px;
+  margin-right: 5px;
 }

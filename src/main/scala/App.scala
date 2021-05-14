@@ -6,6 +6,8 @@ object App {
 
   def main(args: Array[String]): Unit = {
 
+    // MODEL
+
     case class TeamMember(name: String)
 
     val teamMembers = List(
@@ -19,23 +21,52 @@ object App {
       TeamMember("Sabrina")
     )
 
-    // val memberStream: Signal[TeamMember] = ???
+    // STATE
 
-    def render(member: TeamMember): Span =
+    // Var-s are reactive state variables suitable for both local state and redux-like global stores.
+    // Laminar uses my library Airstream as its reactive layer https://github.com/raquo/Airstream
+
+    // val memberVar = Var(teamMembers.head)
+    // val memberStream: EventStream[TeamMember] = ???
+    // val memberSignal: Signal[TeamMember] = memberStream.startWith(teamMembers.head)
+    // val memberSignal: Signal[TeamMember] = Signal.fromValue(teamMembers.head)
+
+    val membersTodo: Var[List[TeamMember]] = Var(teamMembers)
+    val membersDone: Var[List[TeamMember]] = Var(List.empty)
+    val memberinSpotlight: Var[Option[TeamMember]] = Var(None)
+
+
+    // RENDERING
+
+    def renderMember(member: TeamMember): Span =
       span(
-        span(className(List("member-icon", "material-icons")), "person"),
+        className("team-member"),
+        span(className("member-icon", "material-icons"), "person"),
         member.name
       )
 
-    // val colorStream: EventStream[String]
+    def renderMemberList(members: List[TeamMember])  =
+      ul(
+        className("team-members"),
+        members.map { member =>
+          li(
+            renderMember(member)
+          )
+        }
+      )
 
-    // def spotlightMemberView($members: Signal[TeamMember]): Div = div($members.map(_.name))
+    def MemberList(title: String, cls: String, $members: Signal[List[TeamMember]]) =
+      div(
+        className("team-members-container", cls),
+        span(title),
+        child <-- $members.map(renderMemberList)
+      )
 
-    lazy val spotlight =
+    def Spotlight($member: Signal[Option[TeamMember]]) =
       div(
         div(
-          className(List("spotlight")),
-          // color <-- colorStream
+          className("spotlight"),
+          child <-- $member.map(x => if (x.isDefined) renderMember(x.get) else emptyNode)
         ),
         onClick --> { _ => println("Coooool") }
       )
@@ -44,19 +75,9 @@ object App {
       div(
         className("app"),
         h1("UES Daily Standup"),
-        spotlight,
-        div(
-          className("team-members-container"),
-          ul(
-            className("team-members"),
-            teamMembers.map { member =>
-              li(
-                className("team-member"),
-                render(member)
-              )
-            }
-          )
-        )
+        MemberList("Awaiting Spotlight:", "todo", membersTodo.signal),
+        Spotlight(memberinSpotlight.signal),
+        MemberList("Finished:", "done", membersDone.signal),
       )
 
     // Wait until the DOM is loaded, otherwise app-container element might not exist
