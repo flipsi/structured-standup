@@ -33,7 +33,18 @@ object App {
 
     val membersTodo: Var[List[TeamMember]] = Var(teamMembers)
     val membersDone: Var[List[TeamMember]] = Var(List.empty)
-    val memberinSpotlight: Var[Option[TeamMember]] = Var(None)
+    val memberInSpotlight: Var[Option[TeamMember]] = Var(None)
+
+    // TODO: refactor imperative implementation the reactive way
+    def nominateNextMember(): Unit = {
+      memberInSpotlight.now.map((last => membersDone.set((membersDone.now: List[TeamMember]) :+ last)))
+      val theLuckyOne = membersTodo.now.headOption
+      memberInSpotlight.set(theLuckyOne)
+      theLuckyOne map { theOne =>
+        println(s"Es freue sich: ${theOne.name}")
+        membersTodo.set(membersTodo.now.filter(_ != theOne))
+      }
+    }
 
 
     // RENDERING
@@ -68,7 +79,7 @@ object App {
           className("spotlight"),
           child <-- $member.map(x => if (x.isDefined) renderMember(x.get) else emptyNode)
         ),
-        onClick --> { _ => println("Coooool") }
+        onClick --> { _ => nominateNextMember() }
       )
 
     lazy val appElement =
@@ -76,7 +87,7 @@ object App {
         className("app"),
         h1("UES Daily Standup"),
         MemberList("Awaiting Spotlight:", "todo", membersTodo.signal),
-        Spotlight(memberinSpotlight.signal),
+        Spotlight(memberInSpotlight.signal),
         MemberList("Finished:", "done", membersDone.signal),
       )
 
