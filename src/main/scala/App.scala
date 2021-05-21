@@ -15,6 +15,8 @@ object App {
     TeamMember("Armin"),
     TeamMember("Ashraf"),
     TeamMember("Christof"),
+    TeamMember("Hanne"),
+    TeamMember("Josef"),
     TeamMember("Luciano"),
     TeamMember("Nebo"),
     TeamMember("Philipp"),
