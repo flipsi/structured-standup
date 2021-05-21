@@ -24,7 +24,7 @@ function prepare() {
     mkdir -p "$TMP_DOC_ROOT"
     cp "./src/main/resources/index-fullopt.html" "$TMP_DOC_ROOT/index.html"
     cp "./src/main/resources/"*.css "$TMP_DOC_ROOT"
-    cp "./target/scala-2.13/scalajs-bundler/main/laminarexamples-fastopt-bundle.js" "$TMP_DOC_ROOT"
+    cp "./target/scala-2.13/scalajs-bundler/main/structured-standup-fastopt-bundle.js" "$TMP_DOC_ROOT"
     echo "$TMP_DOC_ROOT"
 }
 
