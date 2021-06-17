@@ -45,12 +45,12 @@ h1 {
   margin-left: 50px;
 }
 .team-members-container.todo {
-  margin-bottom: 100px;
+  height: 10em;
 }
 .team-members-container.done {
   position: fixed;
   bottom: 0;
-  margin-bottom: 30px;
+  height: 7em;
 }
 .team-members-container > span {
   font-size: 1.5em;
