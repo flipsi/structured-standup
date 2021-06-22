@@ -87,6 +87,14 @@ object App {
     def Spotlight($member: Signal[Option[TeamMember]]) =
       div(
         div(
+          className(List("balloons", "hidden")),
+          div(className("balloon")),
+          div(className("balloon")),
+          div(className("balloon")),
+          div(className("balloon")),
+          div(className("balloon")),
+        ),
+        div(
           className("spotlight"),
           child <-- $member.map(x => if (x.isDefined) renderMember(x.get) else emptyNode)
         ),
