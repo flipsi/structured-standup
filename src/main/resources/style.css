@@ -63,11 +63,17 @@ h1 {
   display: inline;
   margin-right: 2em;
 }
-.member-icon {
-  position: relative;
-  top: 4px;
-  margin-right: 5px;
+.team-member {
+  display: inline-flex;
+  align-items: center;
 }
-.team-members {
+.team-member:before {
+  font-family: 'Material Icons';
+  content: 'person';
+  vertical-align: middle;
+  margin-right: .1em;
+}
+.team-members,
+.team-member:before {
   font-size: 1.3em;
 }

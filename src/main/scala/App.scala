@@ -63,7 +63,6 @@ object App {
     def renderMember(member: TeamMember): Span =
       span(
         className("team-member"),
-        span(className("member-icon", "material-icons"), "person"),
         member.name
       )
 
