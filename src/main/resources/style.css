@@ -35,6 +35,9 @@ h1 {
   top: 128px;
   left: 110px;
 }
+.spotlight, .team-member {
+  cursor: pointer;
+}
 /* TODO: fix this for member-icon
 .spotlight .team-member,
 .spotlight .team-member > member-icon {
