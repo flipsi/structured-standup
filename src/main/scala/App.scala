@@ -57,6 +57,20 @@ object App {
       }
     }
 
+    // TODO: refactor imperative implementation the reactive way
+    def nominateSpecificMember(member: TeamMember): Unit = {
+      if (membersTodo.now.contains(member)) {
+        memberInSpotlight.now.map((last => membersDone.set((membersDone.now: List[TeamMember]) :+ last)))
+        memberInSpotlight.set(Some(member))
+        println(s"Es freue sich: ${member.name}")
+        membersTodo.set(membersTodo.now.filter(_ != member))
+      } else if (membersDone.now.contains(member)) {
+        memberInSpotlight.now.map((last => membersTodo.set((membersTodo.now: List[TeamMember]) :+ last)))
+        memberInSpotlight.set(Some(member))
+        println(s"Es freue sich: ${member.name}")
+        membersDone.set(membersDone.now.filter(_ != member))
+      }
+    }
 
     // RENDERING
 
@@ -64,10 +78,11 @@ object App {
       span(
         className("team-member"),
         span(className("member-icon", "material-icons"), "person"),
-        member.name
+        member.name,
+        onClick --> { _ => nominateSpecificMember(member) }
       )
 
-    def renderMemberList(members: List[TeamMember])  =
+    def renderMemberList(members: List[TeamMember]) =
       ul(
         className("team-members"),
         members.map { member =>
