@@ -38,7 +38,7 @@ h1 {
 }
 .spotlight .team-member,
 .spotlight .team-member > .member-icon {
-  font-size: 40px;
+  font-size: 2.5em;
 }
 .team-members-container {
   margin-left: 50px;
@@ -54,11 +54,10 @@ h1 {
 .team-members-container > span {
   font-size: 1.5em;
 }
-.team-members {
+.team-members > ul {
   list-style: none;
   white-space: nowrap;
   line-height: 2em;
-  font-size: 120%;
 }
 .team-members > li {
   display: inline;
@@ -68,4 +67,7 @@ h1 {
   position: relative;
   top: 4px;
   margin-right: 5px;
+}
+.team-members {
+  font-size: 1.3em;
 }
