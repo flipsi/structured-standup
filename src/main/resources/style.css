@@ -25,22 +25,21 @@ h1 {
   padding: 20px;
 }
 .spotlight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 300px;
   height: 300px;
   border-radius: 50%;
   margin-left: 300px;
 }
-.spotlight .team-member {
-  position: relative;
-  top: 128px;
-  left: 110px;
+.spotlight, .team-member {
+  cursor: pointer;
 }
-/* TODO: fix this for member-icon
 .spotlight .team-member,
-.spotlight .team-member > member-icon {
-  font-size: 40px
+.spotlight .team-member > .member-icon {
+  font-size: 2.5em;
 }
-*/
 .team-members-container {
   margin-left: 50px;
 }
@@ -55,18 +54,26 @@ h1 {
 .team-members-container > span {
   font-size: 1.5em;
 }
-.team-members {
+.team-members > ul {
   list-style: none;
   white-space: nowrap;
   line-height: 2em;
-  font-size: 120%;
 }
 .team-members > li {
   display: inline;
   margin-right: 2em;
 }
-.member-icon {
-  position: relative;
-  top: 4px;
-  margin-right: 5px;
+.team-member {
+  display: inline-flex;
+  align-items: center;
+}
+.team-member:before {
+  font-family: 'Material Icons';
+  content: 'person';
+  vertical-align: middle;
+  margin-right: .1em;
+}
+.team-members,
+.team-member:before {
+  font-size: 1.3em;
 }
