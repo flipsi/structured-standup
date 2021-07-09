@@ -10,7 +10,9 @@ body {
   min-height: 100%;
 }
 
-body {
+body,
+input,
+button {
   font-family: 'Krona One', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.4em;
@@ -76,4 +78,31 @@ h1 {
 .team-members,
 .team-member:before {
   font-size: 1.3em;
+}
+
+form {
+  width: 800px;
+  margin-left: 50px;
+}
+form label {
+  font-size: 1.5em;
+}
+form input {
+  margin-top: 10px;
+  border: none;
+  width: 100%;
+  padding: 4px 10px;
+  box-sizing: border-box;
+}
+form input:focus {
+  outline: none;
+}
+form button {
+  float: right;
+  border: none;
+  padding: 12px 24px;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  transition: background-color .3s, color .3s;
 }

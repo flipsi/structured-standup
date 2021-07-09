@@ -1,38 +1,35 @@
+package structuredStandup.pages
+
 import scala.util.Random
-import ajax.AjaxTester
 import com.raquo.laminar.api.L._
 import org.scalajs.dom.document
 
-object App {
+import scala.scalajs.js.JSON
+
+object StandupPage {
 
   val headline = "Structured Standup"
 
   // MODEL
 
   case class TeamMember(name: String)
-  val teamMembers = List(
-    TeamMember("Alex"),
-    TeamMember("Armin"),
-    TeamMember("Ashraf"),
-    TeamMember("Christof"),
-    TeamMember("Hanne"),
-    TeamMember("Josef"),
-    TeamMember("Luciano"),
-    TeamMember("Nebo"),
-    TeamMember("Philipp"),
-  )
 
-  def main(args: Array[String]): Unit = {
+  implicit val random = new Random
 
-    // STATE
+  def getRandomElement[A](seq: Seq[A])(implicit random: Random): Option[A] =
+    seq.length match {
+      case 0 => None
+      case n => Some(seq(random.nextInt(n)))
+    }
 
-    implicit val random = new Random
-
-    def getRandomElement[A](seq: Seq[A])(implicit random: Random): Option[A] =
-      seq.length match {
-        case 0 => None
-        case n => Some(seq(random.nextInt(n)))
-      }
+  def apply(
+    users: String
+  ): HtmlElement = {
+    val teamMembers = users
+      .split(",")
+      .map(_.replace("+", " ").trim())
+      .map(TeamMember)
+      .toList
 
     // Var-s are reactive state variables suitable for both local state and redux-like global stores.
     // Laminar uses my library Airstream as its reactive layer https://github.com/raquo/Airstream
@@ -48,27 +45,27 @@ object App {
 
     // TODO: refactor imperative implementation the reactive way
     def nominateNextMember(): Unit = {
-      memberInSpotlight.now.map((last => membersDone.set((membersDone.now: List[TeamMember]) :+ last)))
-      val theLuckyOne = getRandomElement(membersTodo.now)
+      memberInSpotlight.now().map((last => membersDone.set((membersDone.now(): List[TeamMember]) :+ last)))
+      val theLuckyOne = getRandomElement(membersTodo.now())
       memberInSpotlight.set(theLuckyOne)
-      theLuckyOne map { theOne =>
+      val _ = theLuckyOne map { theOne =>
         println(s"Es freue sich: ${theOne.name}")
-        membersTodo.set(membersTodo.now.filter(_ != theOne))
+        membersTodo.set(membersTodo.now().filter(_ != theOne))
       }
     }
 
     // TODO: refactor imperative implementation the reactive way
     def nominateSpecificMember(member: TeamMember): Unit = {
-      if (membersTodo.now.contains(member)) {
-        memberInSpotlight.now.map((last => membersDone.set((membersDone.now: List[TeamMember]) :+ last)))
+      if (membersTodo.now().contains(member)) {
+        memberInSpotlight.now().map((last => membersDone.set((membersDone.now(): List[TeamMember]) :+ last)))
         memberInSpotlight.set(Some(member))
         println(s"Es freue sich: ${member.name}")
-        membersTodo.set(membersTodo.now.filter(_ != member))
-      } else if (membersDone.now.contains(member)) {
-        memberInSpotlight.now.map((last => membersTodo.set((membersTodo.now: List[TeamMember]) :+ last)))
+        membersTodo.set(membersTodo.now().filter(_ != member))
+      } else if (membersDone.now().contains(member)) {
+        memberInSpotlight.now().map((last => membersTodo.set((membersTodo.now(): List[TeamMember]) :+ last)))
         memberInSpotlight.set(Some(member))
         println(s"Es freue sich: ${member.name}")
-        membersDone.set(membersDone.now.filter(_ != member))
+        membersDone.set(membersDone.now().filter(_ != member))
       }
     }
 
@@ -77,7 +74,6 @@ object App {
     def renderMember(member: TeamMember): Span =
       span(
         className("team-member"),
-
         member.name,
         onClick --> { _ => nominateSpecificMember(member) }
       )
@@ -108,18 +104,13 @@ object App {
         onClick --> { _ => nominateNextMember() }
       )
 
-    lazy val appElement =
-      div(
-        className("app"),
-        h1(headline),
-        MemberList("Awaiting Spotlight:", "todo", membersTodo.signal),
-        Spotlight(memberInSpotlight.signal),
-        MemberList("Finished:", "done", membersDone.signal),
-      )
-
-    // Wait until the DOM is loaded, otherwise app-container element might not exist
-    lazy val container = document.getElementById("app-container")
-    renderOnDomContentLoaded(container, appElement)
+    div(
+      className("app"),
+      h1(headline),
+      MemberList("Awaiting Spotlight:", "todo", membersTodo.signal),
+      Spotlight(memberInSpotlight.signal),
+      MemberList("Finished:", "done", membersDone.signal),
+    )
   }
 
 }

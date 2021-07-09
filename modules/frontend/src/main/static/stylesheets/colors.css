@@ -1,0 +1,32 @@
+body,
+input {
+  background: #222222;
+  color: #f5f5f5;
+}
+
+h1 {
+  color: #EAA266;
+}
+.team-members-container > span {
+  color: #3CCC33;
+}
+.spotlight {
+  background: #444444;
+}
+
+label {
+  color: #3CCC33;
+}
+
+input {
+  background: #444444;
+}
+
+button {
+  color: #f5f5f5;
+  background: #3CCC33;
+}
+button:hover, button:focus {
+  color: #dcdcdc;
+  background: #1e6619;
+}

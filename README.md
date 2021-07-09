@@ -1,24 +1,66 @@
 # Structured Standup
 
+Rewrite of [structured-standup](https://github.com/soziflip/structured-standup)
+based on [frontroute-example](https://github.com/yurique/frontroute-example).
+
 ## Description
 
 This is a tiny helper to help a developer team to structure their Daily Standup Meeting by suggesting an order of the team member's turns.
 
 I picked this use case to get my hands on the Functional Reactive Scala.js UI library [Laminar](https://laminar.dev/documentation#modifiers).
 
-## Getting started
+## Running
 
-1) git clone this repo to your local machine
-2) open sbt, type `~fastOptJS::webpack`
-3) open `index-fastopt.html` file in your browser (found in `src/main/resources`)
-4) open browser console to monitor for messages and errors
+Install npm dependencies:
 
-Now you have `App.scala` running in your browser, and any code changes you make will show up on screen after they get incrementally recompiled (see your sbt shell) and after you reload the page in the browser.
+```
+yarn install
+```
 
+Build the front-end:
 
-## Author
+```
+sbt frontendJS/fastLinkJS
+```
 
-Philipp Moers – [@soziflip](https://twitter.com/soziflip)
+Start the webpack dev server:
+
+```
+yarn start
+```
+
+## Open in a browser
+
+Open http://localhost:30290/ in the browser.
+
+## Developing
+
+To make sbt re-compile the front-end on code changes:
+
+```
+sbt ~frontendJS/fastLinkJS
+```
+
+## Production build
+
+Build an optimized JS:
+
+```
+sbt frontendJS/fullLinkJS
+```
+
+Run webpack:
+
+```
+yarn run build
+```
+
+The front-end assets will be generated into the `dist` folder.
+
+## Authors
+
+- Philipp Moers – [@soziflip](https://twitter.com/soziflip)
+- Armin Grodon – [x4121](https://github.com/armingrodon)
 
 
 ## License
