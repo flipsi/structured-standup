@@ -133,7 +133,7 @@ function getConfig() {
     case 'start:prod':
       return _.mergeWith(common('production'), prod, {devServer}, customizer);
 
-    case 'dev':
+    case 'start':
       return _.mergeWith(common('development'), dev, {devServer}, customizer);
 
     default:

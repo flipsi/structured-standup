@@ -31,7 +31,7 @@
     "defaults"
   ],
   "scripts": {
-    "dev": "DEBUG=1 webpack serve --progress",
+    "start": "DEBUG=1 webpack serve --progress",
     "build": "webpack --progress",
     "build:dev": "webpack --progress",
     "start:prod": "webpack serve --progress"
