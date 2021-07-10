@@ -37,11 +37,6 @@ function common(mode) {
     entry: [
       path.resolve(__dirname, './modules/frontend/src/main/static/stylesheets/main.css'),
     ],
-    output: {
-      publicPath: '/standup/',
-      path: path.resolve(__dirname, 'dist'),
-      filename: '[name].bundle.[contenthash].js'
-    },
     module: {
       rules: [
         {
@@ -78,6 +73,11 @@ const prod = {
   entry: [
     path.resolve(__dirname, `${scalaOutputPath}/frontend-opt/main.js`),
   ],
+  output: {
+    publicPath: '/standup/',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.[contenthash].js'
+  },
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
@@ -110,6 +110,11 @@ const dev = {
   entry: [
     path.resolve(__dirname, `${scalaOutputPath}/frontend-fastopt/main.js`),
   ],
+  output: {
+    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.[contenthash].js'
+  },
   plugins: [
     new MiniCssExtractPlugin(),
   ]
